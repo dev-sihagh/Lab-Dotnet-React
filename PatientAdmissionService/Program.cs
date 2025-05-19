@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PatientAdmissionService.Data;
+using PatientAdmissionService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,7 @@ builder.Services.AddDbContext<AdmissionDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<IPatientService, PatientService>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
